@@ -11,7 +11,17 @@
 import UIKit
 
 public extension MarkdownHeader {
-    static let defaultFont = UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize)
+    
+    class func defaultFont () -> (UIFont){
+
+        guard let artistDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: .title2).withSymbolicTraits(.traitBold) else{
+
+            return UIFont.boldSystemFont(ofSize: UIFont.preferredFont(forTextStyle: .title2).pointSize)
+        }
+
+        return UIFont(descriptor: artistDescriptor, size: 0.0)
+    }
+    
 }
 
 #endif
