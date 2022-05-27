@@ -22,7 +22,7 @@ open class MarkdownHeader: MarkdownLevelElement {
     return String(format: MarkdownHeader.regex, level)
   }
 
-  public init(font: MarkdownFont? = MarkdownHeader.defaultFont,
+  public init(font: MarkdownFont? = MarkdownHeader.defaultFont(),
               maxLevel: Int = 0, fontIncrease: Int = 2, color: MarkdownColor? = nil) {
     self.maxLevel = maxLevel
     self.font = font
