@@ -14,9 +14,9 @@ public extension MarkdownHeader {
     
     class func defaultFont () -> (UIFont){
 
-        guard let artistDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: .title2).withSymbolicTraits(.traitBold) else{
+        guard let artistDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: .title3).withSymbolicTraits(.traitBold) else{
 
-            return UIFont.boldSystemFont(ofSize: UIFont.preferredFont(forTextStyle: .title2).pointSize)
+            return UIFont.boldSystemFont(ofSize: UIFont.preferredFont(forTextStyle: .title3).pointSize)
         }
 
         return UIFont(descriptor: artistDescriptor, size: 0.0)
