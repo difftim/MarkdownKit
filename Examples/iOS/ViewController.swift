@@ -99,6 +99,7 @@ extension ViewController: UITextViewDelegate {
     //UIApplication.shared.openURL(URL)
     if let code = MarkdownCodeEscaping.code(url: URL) {
       print("🎉🎉🎉🎉")
+        print(code)
       self.present(CodeViewController(code: code), animated: true)
     }
     return false

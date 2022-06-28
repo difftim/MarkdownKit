@@ -419,7 +419,6 @@
 				B672001521EF8A96008649E1 /* Protocols */,
 				B672000721EF8A96008649E1 /* Elements */,
 				B672000421EF8A96008649E1 /* Extensions */,
-				B672000321EF8A96008649E1 /* MarkdownParser.swift */,
 				3D6C279B25E80DD8008ED858 /* Typealias.swift */,
 			);
 			path = Common;
@@ -532,6 +531,7 @@
 		B672000421EF8A96008649E1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B672000321EF8A96008649E1 /* MarkdownParser.swift */,
 				B672000521EF8A96008649E1 /* String+UTF16.swift */,
 			);
 			path = Extensions;
