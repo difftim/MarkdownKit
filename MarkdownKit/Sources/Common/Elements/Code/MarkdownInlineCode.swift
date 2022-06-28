@@ -7,7 +7,7 @@
 //
 import Foundation
 
-open class MarkdownCode: MarkdownCommonElement {
+open class MarkdownInlineCode: MarkdownCommonElement {
 
   fileprivate static let regex = "(.?|^)(\\`{1,3})(.+?)(\\2)"
   
@@ -17,17 +17,17 @@ open class MarkdownCode: MarkdownCommonElement {
   open var textBackgroundColor: MarkdownColor?
 
   open var regex: String {
-    return MarkdownCode.regex
+    return MarkdownInlineCode.regex
   }
 
-  public init(font: MarkdownFont? = MarkdownCode.defaultFont,
+  public init(font: MarkdownFont? = MarkdownInlineCode.defaultFont,
               color: MarkdownColor? = nil,
-              textHighlightColor: MarkdownColor? = MarkdownCode.defaultHighlightColor,
-              textBackgroundColor: MarkdownColor? = MarkdownCode.defaultBackgroundColor) {
+              textHighlightColor: MarkdownColor? = MarkdownInlineCode.defaultHighlightColor,
+              textBackgroundColor: MarkdownColor? = MarkdownInlineCode.defaultBackgroundColor) {
     self.font = font
     self.color = color
     self.textHighlightColor = textHighlightColor
-    self.textBackgroundColor = textBackgroundColor
+    self.textBackgroundColor = .yellow
   }
 
   open func addAttributes(_ attributedString: NSMutableAttributedString, range: NSRange) {

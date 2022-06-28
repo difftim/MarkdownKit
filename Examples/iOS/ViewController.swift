@@ -93,9 +93,14 @@ class ViewController: UIViewController {
 extension ViewController: UITextViewDelegate {
   func textView(_ textView: UITextView, shouldInteractWith URL: URL,
                 in characterRange: NSRange) -> Bool {
-    UIApplication.shared.open(URL, options: [:])
+//    UIApplication.shared.open(URL, options: [:])
+    print("keith-s ==> \(URL)")
     //UIApplication.shared.openURL(URL)
-    return true
+    if let code = MarkdownCodeEscaping.code(url: URL) {
+      print("🎉🎉🎉🎉")
+      print(code)
+    }
+    return false
   }
   
 }

@@ -56,10 +56,11 @@ open class MarkdownParser {
   public let automaticLink: MarkdownAutomaticLink
   public let bold: MarkdownBold
   public let italic: MarkdownItalic
-  public let code: MarkdownCode
+  public let inlineCode: MarkdownInlineCode
   public let strikethrough: MarkdownStrikethrough
 
   // MARK: Escaping Elements
+  fileprivate var inlineCodeEscaping = MarkdownInlineCodeEscaping()
   fileprivate var codeEscaping = MarkdownCodeEscaping()
   fileprivate var escaping = MarkdownEscaping()
   fileprivate var unescaping = MarkdownUnescaping()
@@ -101,11 +102,11 @@ open class MarkdownParser {
     self.automaticLink = MarkdownAutomaticLink()
     self.bold = MarkdownBold()
     self.italic = MarkdownItalic()
-    self.code = MarkdownCode()
+    self.inlineCode = MarkdownInlineCode()
     self.strikethrough = MarkdownStrikethrough()
 
-    self.escapingElements = [codeEscaping, escaping]
-    self.unescapingElements = [code, unescaping]
+    self.escapingElements = [inlineCodeEscaping, escaping]
+    self.unescapingElements = [inlineCode, unescaping]
     self.customElements = customElements
     self.enabledElements = enabledElements
     updateDefaultElements()
@@ -161,7 +162,7 @@ open class MarkdownParser {
       (.strikethrough, strikethrough),
       (.link, link),
       (.automaticLink, automaticLink),
-      (.code, code),
+      (.code, inlineCode),
     ]
     defaultElements = pairs.compactMap { enabled, element in
         enabledElements.contains(enabled) ? element : nil
@@ -170,7 +171,7 @@ open class MarkdownParser {
 
   fileprivate func updateEscapingElements() {
     if enabledElements.contains(.code) {
-      escapingElements = [codeEscaping, escaping]
+      escapingElements = [codeEscaping, inlineCodeEscaping, escaping]
     } else {
       escapingElements = [escaping]
     }
@@ -178,7 +179,7 @@ open class MarkdownParser {
 
   fileprivate func updateUnescapingElements() {
     if enabledElements.contains(.code) {
-      unescapingElements = [code, unescaping]
+      unescapingElements = [inlineCode, unescaping]
     } else {
       unescapingElements = [unescaping]
     }
