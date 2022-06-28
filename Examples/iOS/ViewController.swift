@@ -8,6 +8,7 @@
 
 import UIKit
 import MarkdownKit
+import MarkdownView
 
 class ViewController: UIViewController {
   @IBOutlet fileprivate weak var textView: UITextView! {
@@ -98,7 +99,7 @@ extension ViewController: UITextViewDelegate {
     //UIApplication.shared.openURL(URL)
     if let code = MarkdownCodeEscaping.code(url: URL) {
       print("🎉🎉🎉🎉")
-      print(code)
+      self.present(CodeViewController(code: code), animated: true)
     }
     return false
   }

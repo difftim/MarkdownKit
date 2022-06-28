@@ -31,7 +31,7 @@ open class MarkdownCodeEscaping: MarkdownElement {
 
     attributedString.replaceCharacters(
       in: .init(location: match.range(at: 2).location, length: (2...4).reduce(0, { $0 + match.range(at: $1).length })),
-      with: "[View Code](\(MarkdownCodeEscaping.url(code: matchString)))"
+      with: "[View Code](\(MarkdownCodeEscaping.url(code: "```\(matchString)```")))"
     )
   }
 
