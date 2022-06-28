@@ -27,7 +27,7 @@ open class MarkdownInlineCode: MarkdownCommonElement {
     self.font = font
     self.color = color
     self.textHighlightColor = textHighlightColor
-    self.textBackgroundColor = .yellow
+    self.textBackgroundColor = textBackgroundColor
   }
 
   open func addAttributes(_ attributedString: NSMutableAttributedString, range: NSRange) {
