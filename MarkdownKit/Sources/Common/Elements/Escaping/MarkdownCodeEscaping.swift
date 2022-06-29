@@ -10,6 +10,8 @@ import Foundation
 // 多行
 open class MarkdownCodeEscaping: MarkdownElement {
   fileprivate static let regex = "(\\s+|\\w+|^)(?<!\\\\)(?:\\\\\\\\)*+(\\`+)(.+?)(\\2)"
+    
+  fileprivate static let languageRegex = "\\b[a-zA-Z]+\\b"
 
   open var regex: String {
     return MarkdownCodeEscaping.regex
@@ -25,15 +27,32 @@ open class MarkdownCodeEscaping: MarkdownElement {
       length: (2 ... match.numberOfRanges - 1).reduce(0) { $0 + match.range(at: $1).length }
     )
     // escaping all characters
-    let matchString = attributedString.attributedSubstring(from: range).string
-
+    let matchString = attributedString.attributedSubstring(from: match.range(at: match.numberOfRanges - 2)).string
+      
     // 仅处理**含换行符**
     guard matchString.contains(where: { $0 == "\n" }) else { return }
-
+      
+    let language = matchLanguageResult(matchString)
+      
     attributedString.replaceCharacters(
       in: range,
-      with: "[View Code](\(MarkdownCodeEscaping.url(code: matchString)))"
+      with: "[View Code](\(MarkdownCodeEscaping.url(lang: language, code: matchString)))"
     )
+  }
+    
+  fileprivate func matchLanguageResult(_ string: String) -> String {
+    let attributedString = NSAttributedString(string: string)
+    do {
+      let regularExpression = try NSRegularExpression(pattern: "\\b[a-zA-Z]+\\b")
+      if let match = regularExpression.firstMatch(in: string,
+                                                  options: .withoutAnchoringBounds,
+                                                  range: NSRange(location: 0,
+                                                                 length: attributedString.length))
+      {
+          return attributedString.attributedSubstring(from: match.range).string
+      }
+    } catch {}
+    return ""
   }
 }
 
@@ -42,15 +61,19 @@ public extension MarkdownCodeEscaping {
     static let host = "MarkdownCodeEscaping.md"
   }
 
-  static func url(code: String) -> String {
+  static func url(lang: String, code: String) -> String {
     let data = encode(code: code)
-    return "http://\(Config.host)?\(data)"
+    return "http://\(Config.host)?\(lang)=\(data)"
   }
 
-  static func code(url: URL) -> String? {
-    guard let host = url.host, host == Config.host else { return nil }
-    guard let data = url.query else { return nil }
-    return decode(data: data)
+  static func code(url: URL) -> (String?, String?) {
+    guard let host = url.host, host == Config.host else { return (nil, nil) }
+    guard let data = url.query else { return (nil, nil) }
+    let contents = data.split(separator: "=").compactMap({ String($0) })
+    if let lang = contents.first, let code = contents.last {
+        return (lang, decode(data: code))
+    }
+    return (nil, nil)
   }
 
   private static func encode(code: String) -> String {

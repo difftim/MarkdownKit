@@ -97,9 +97,11 @@ extension ViewController: UITextViewDelegate {
 //    UIApplication.shared.open(URL, options: [:])
     print("keith-s ==> \(URL)")
     //UIApplication.shared.openURL(URL)
-    if let code = MarkdownCodeEscaping.code(url: URL) {
-      print("🎉🎉🎉🎉")
-        print(code)
+    let tuple = MarkdownCodeEscaping.code(url: URL)
+      if let lang = tuple.0, let code = tuple.1 {
+      print(lang)
+      print(code)
+        
       self.present(CodeViewController(code: code), animated: true)
     }
     return false
