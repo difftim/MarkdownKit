@@ -14,8 +14,11 @@ open class MarkdownLink: MarkdownLinkElement {
     // This regex is eager if does not count even trailing Parentheses.
     fileprivate static let onlyLinkRegex = "\\]\\(\\S+(?=\\))\\)"
     
+    private let schemeRegex = "([a-z]{2,20}):\\/\\/"
+    
     open var font: MarkdownFont?
     open var color: MarkdownColor?
+    open var defaultScheme: String?
     
     open var regex: String {
       return MarkdownLink.regex
@@ -33,7 +36,14 @@ open class MarkdownLink: MarkdownLinkElement {
     
     open func formatText(_ attributedString: NSMutableAttributedString, range: NSRange,
                            link: String) {
-      let fullLink = link.starts(with: "http") ? link : "https://\(link)"
+      let regex = try? NSRegularExpression(pattern: schemeRegex, options: .caseInsensitive)
+      let hasScheme = regex?.firstMatch(
+          in: link,
+          options: .anchored,
+          range: NSRange(0..<link.count)
+      ) != nil
+      
+      let fullLink = hasScheme ? link : "\(defaultScheme ?? "https://")\(link)"
       
       guard let encodedLink = fullLink.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlHostAllowed)
         else {
