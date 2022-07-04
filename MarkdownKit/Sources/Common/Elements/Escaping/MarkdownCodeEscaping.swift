@@ -36,7 +36,7 @@ open class MarkdownCodeEscaping: MarkdownElement {
       
     attributedString.replaceCharacters(
       in: range,
-      with: "[View Code](\(MarkdownCodeEscaping.url(lang: language, code: matchString)))"
+      with: "[->View Code](\(MarkdownCodeEscaping.url(lang: language, code: matchString)))"
     )
   }
     
