@@ -84,6 +84,10 @@
 		CEABE6E9286AEC850005434F /* MarkdownInlineCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABE6E7286AEC850005434F /* MarkdownInlineCode.swift */; };
 		CEABE6EC286B059D0005434F /* MarkdownView in Frameworks */ = {isa = PBXBuildFile; productRef = CEABE6EB286B059D0005434F /* MarkdownView */; settings = {ATTRIBUTES = (Required, ); }; };
 		CEABE6F0286B08250005434F /* CodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEABE6ED286B06220005434F /* CodeViewController.swift */; };
+		CED0988A2874326400147613 /* MarkdownHorizontalLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED098882874325400147613 /* MarkdownHorizontalLine.swift */; };
+		CED0988B2874326400147613 /* MarkdownHorizontalLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED098882874325400147613 /* MarkdownHorizontalLine.swift */; };
+		CED0988D287432C400147613 /* UIImage+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED0988C287432C400147613 /* UIImage+Color.swift */; };
+		CED0988E287432C400147613 /* UIImage+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED0988C287432C400147613 /* UIImage+Color.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -188,6 +192,8 @@
 		CEABE6E4286AEBA90005434F /* MarkdownInlineCodeEscaping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownInlineCodeEscaping.swift; sourceTree = "<group>"; };
 		CEABE6E7286AEC850005434F /* MarkdownInlineCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownInlineCode.swift; sourceTree = "<group>"; };
 		CEABE6ED286B06220005434F /* CodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeViewController.swift; sourceTree = "<group>"; };
+		CED098882874325400147613 /* MarkdownHorizontalLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownHorizontalLine.swift; sourceTree = "<group>"; };
+		CED0988C287432C400147613 /* UIImage+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Color.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -496,6 +502,7 @@
 			isa = PBXGroup;
 			children = (
 				B672000621EF8A96008649E1 /* UIFont+Traits.swift */,
+				CED0988C287432C400147613 /* UIImage+Color.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -540,6 +547,7 @@
 		B672000721EF8A96008649E1 /* Elements */ = {
 			isa = PBXGroup;
 			children = (
+				CED098872874324000147613 /* Line */,
 				B64AF60E22033EAA0048439D /* Quote */,
 				B64AF60D22033E120048439D /* List */,
 				B64AF60C22031ABD0048439D /* Bold */,
@@ -602,6 +610,14 @@
 				B62C1BE221EF7D8C00308C8C /* String+HTMLDecode.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CED098872874324000147613 /* Line */ = {
+			isa = PBXGroup;
+			children = (
+				CED098882874325400147613 /* MarkdownHorizontalLine.swift */,
+			);
+			path = Line;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -824,9 +840,11 @@
 				B672002321EF8A96008649E1 /* MarkdownUnescaping.swift in Sources */,
 				B672001D21EF8A96008649E1 /* UIFont+Traits.swift in Sources */,
 				B672002021EF8A96008649E1 /* MarkdownHeader.swift in Sources */,
+				CED0988D287432C400147613 /* UIImage+Color.swift in Sources */,
 				B672001B21EF8A96008649E1 /* MarkdownParser.swift in Sources */,
 				B64AF604220317980048439D /* MarkdownCode+UIKit.swift in Sources */,
 				B672002821EF8A96008649E1 /* MarkdownBold.swift in Sources */,
+				CED0988A2874326400147613 /* MarkdownHorizontalLine.swift in Sources */,
 				B672001F21EF8A96008649E1 /* MarkdownLink.swift in Sources */,
 				B64AF608220319470048439D /* MarkdownLink+UIKit.swift in Sources */,
 				B672001E21EF8A96008649E1 /* MarkdownAutomaticLink.swift in Sources */,
@@ -857,9 +875,11 @@
 				B64AF62B220340AE0048439D /* MarkdownLinkElement.swift in Sources */,
 				B64AF625220340740048439D /* MarkdownItalic.swift in Sources */,
 				B64AF624220340660048439D /* MarkdownAutomaticLink.swift in Sources */,
+				CED0988E287432C400147613 /* UIImage+Color.swift in Sources */,
 				B64AF639220343E00048439D /* MarkdownLink+AppKit.swift in Sources */,
 				B64AF61F220340550048439D /* MarkdownList.swift in Sources */,
 				B64AF6212203405C0048439D /* MarkdownHeader.swift in Sources */,
+				CED0988B2874326400147613 /* MarkdownHorizontalLine.swift in Sources */,
 				B64AF62A220340A80048439D /* MarkdownCommonElement.swift in Sources */,
 				B64AF620220340590048439D /* MarkdownBold.swift in Sources */,
 				B64AF6292203409A0048439D /* MarkdownEscaping.swift in Sources */,

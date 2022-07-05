@@ -23,6 +23,7 @@ open class MarkdownParser {
     public static let italic        = EnabledElements(rawValue: 1 << 6)
     public static let code          = EnabledElements(rawValue: 1 << 7)
     public static let strikethrough = EnabledElements(rawValue: 1 << 8)
+    public static let horizontalLine = EnabledElements(rawValue: 1 << 9)
 
     public static let disabledAutomaticLink: EnabledElements = [
       .header,
@@ -33,6 +34,7 @@ open class MarkdownParser {
       .italic,
       .code,
       .strikethrough,
+      .horizontalLine,
       ]
 
     public static let all: EnabledElements = [
@@ -58,6 +60,7 @@ open class MarkdownParser {
   public let italic: MarkdownItalic
   public let inlineCode: MarkdownInlineCode
   public let strikethrough: MarkdownStrikethrough
+  public let horizontalLine: MarkdownHorizontalLine
 
   // MARK: Escaping Elements
   fileprivate var inlineCodeEscaping = MarkdownInlineCodeEscaping()
@@ -104,6 +107,7 @@ open class MarkdownParser {
     self.italic = MarkdownItalic()
     self.inlineCode = MarkdownInlineCode()
     self.strikethrough = MarkdownStrikethrough()
+    self.horizontalLine = MarkdownHorizontalLine()
 
     self.escapingElements = [inlineCodeEscaping, escaping]
     self.unescapingElements = [inlineCode, unescaping]
@@ -160,6 +164,7 @@ open class MarkdownParser {
       (.bold, bold),
       (.italic, italic),
       (.strikethrough, strikethrough),
+      (.horizontalLine, horizontalLine),
       (.link, link),
       (.automaticLink, automaticLink),
       (.code, inlineCode),
