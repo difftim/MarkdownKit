@@ -9,7 +9,7 @@
 import Foundation
 
 open class MarkdownHorizontalLine: MarkdownElement {
-    fileprivate static let regex = "^[\\s|-]*?-+$"
+    fileprivate static let regex = "^[\\s|-]*?[\\s|-]+$"
 
     lazy var textAttach: NSTextAttachment = {
         let font = UIFont.preferredFont(forTextStyle: .body)

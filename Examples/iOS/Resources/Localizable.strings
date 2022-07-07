@@ -5,6 +5,6 @@
   Created by Ivan Bruel on 19/07/16.
   Copyright © 2016 CocoaPods. All rights reserved.
 */
-"Markdown" = "---\nq ```\n  private enum Config {\n    static let host = \"MarkdownCodeEscaping.md\"\n  }```\n**  x```swift\n``` q```swift``` x 6`this is \n code` \n```(this is \ncode too)```";
+//"Markdown" = "```<font color=blue>蓝色</font>```\n > anidsh";
 
-//"Markdown" = "q n_```swift\n func ```\n  ```swift\n``` q ```swift```  x `this is code`";
+"Markdown" = "``Why did the scarecrow win an award? Because he was outstanding in his field.``";
