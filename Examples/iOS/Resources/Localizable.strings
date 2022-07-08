@@ -5,6 +5,45 @@
   Created by Ivan Bruel on 19/07/16.
   Copyright © 2016 CocoaPods. All rights reserved.
 */
-//"Markdown" = "```<font color=blue>蓝色</font>```\n > anidsh";
+//"Markdown" = "1. niaho\n3. niaho\n\nsldhjahjd\n 4. hiahds\n3. sadsd";
+//"Markdown" = "分割线\n-\n--\n---\n----\n----- ----\n------------- ----\n------  test-----\n";
 
-"Markdown" = "``Why did the scarecrow win an award? Because he was outstanding in his field.``";
+"Markdown" = "---  --\n --- --\nHorizontal line
+\\\\\\
+[Cisco](www.cisco.com)
+
+```swift \n (optional)
+\\\n
+CODE BLOCK
+```
+`Unformatted \\\text`
+  - 湿答答
+- 啊都是撒的
+
+* 湿答答
+  + 湿答答
++ 湿答答
+1. 啊都是的
+5. 阿斯顿是的
+66. 实打实的
+";
+
+//"Markdown" = "*aasdda*\n**bdddd**\n___cssss___\n**__ddddd__**\n*****eaeasd*****\n******dddddf******";
+
+//"Markdown" ="``Why did the \nscarecrow win an award? Because he was outstanding in his field.``";
+
+//"Markdown" = "```\n{\"accountName\":\"Erika(CS-IQA)\",\"signature\":\"\",\"oktaId\":\"00ucxlk620t2VPi8U357\",\"teamsId\":\"\",\"pid\":\"mgmt\",\"vcode\":0,\"avatar2\":{},\"email\":\"erika.dubrovenko@binance.com\",\"oktaOrg\":\"00o7lmeq0Snm25p1B356\",\"params\":{\"oldData\":{\"params\":{},\"accountId\":\"+73232567816\",\"accountName\":\"ErikaDubrovenko(CustomerServices)\",\"email\":\"erika.dubrovenko@binance.com\",\"vcode\":513443,\"status\":\"0\",\"teamsId\":\"21,108\",\"teamsName\":\"binance,_autojoin_domain_bnbocs.co\",\"oktaId\":\"00ucxlk620t2VPi8U357\",\"oktaOrg\":\"00o7lmeq0Snm25p1B356\",\"signature\":\"\",\"avatar\":\"{\\\"encAlgo\\\":\\\"AESGCM256\\\",\\\"encKey\\\":\\\"OLvW88aSsrHAwaTLt5J7gVp7FDv\\\\/B4JF\\\\/b5SInHyXqM=\\\",\\\"attachmentId\\\":\\\"7303635366586057721\\\"}\",\"avatar2\":{}}},\"teamsName\":\"binance\\n_autojoin_domain_bnbocs.co\",\"accountId\":\"+73232567816\",\"appid\":\"mgmt001\",\"status\":\"\"} ```";
+
+//"Markdown" = "*italics* or _italics_
+//**bold** or __bold__
+//~~Linethrough~~Strikethroughs.
+//# Header 1
+//## Header 2
+//### Header 3
+//#### Header 4
+//##### Header 5
+//###### Header 6
+//- Lists
+//* Lists
+//[Links](http://voyagetravelapps.com/)
+//";

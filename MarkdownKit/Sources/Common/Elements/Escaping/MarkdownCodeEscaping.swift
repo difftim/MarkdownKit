@@ -22,6 +22,8 @@ open class MarkdownCodeEscaping: MarkdownElement {
   }
 
   open func match(_ match: NSTextCheckingResult, attributedString: NSMutableAttributedString) {
+    guard 2 < match.numberOfRanges else { return }
+    
     let range = NSRange(
       location: match.range(at: 2).location,
       length: (2 ... match.numberOfRanges - 1).reduce(0) { $0 + match.range(at: $1).length }
@@ -62,25 +64,17 @@ public extension MarkdownCodeEscaping {
   }
 
   static func url(lang: String, code: String) -> String {
-    let data = encode(code: code)
-    return "http://\(Config.host)?\(lang)=\(data)"
+    guard let data = code.encodBase64() else { return "" }
+    return "http://\(Config.host)?\(lang):\(data)"
   }
 
   static func code(url: URL) -> (String?, String?) {
     guard let host = url.host, host == Config.host else { return (nil, nil) }
     guard let data = url.query else { return (nil, nil) }
-    let contents = data.split(separator: "=").compactMap({ String($0) })
+    let contents = data.split(separator: ":").compactMap({ String($0) })
     if let lang = contents.first, let code = contents.last {
-        return (lang, decode(data: code))
+      return (lang, code.decodBase64())
     }
     return (nil, nil)
-  }
-
-  private static func encode(code: String) -> String {
-    return code.escapeUTF16()
-  }
-
-  private static func decode(data: String) -> String? {
-    return data.unescapeUTF16()
   }
 }

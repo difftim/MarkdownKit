@@ -23,6 +23,8 @@ open class MarkdownStrikethrough: MarkdownCommonElement {
   }
 
   public func match(_ match: NSTextCheckingResult, attributedString: NSMutableAttributedString) {
+    guard 4 < match.numberOfRanges else { return }
+    
     attributedString.deleteCharacters(in: match.range(at: 4))
 
     attributedString.addAttribute(

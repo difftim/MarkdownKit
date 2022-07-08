@@ -35,6 +35,8 @@ public extension MarkdownLevelElement {
   }
   
   func match(_ match: NSTextCheckingResult, attributedString: NSMutableAttributedString) {
+    guard 2 < match.numberOfRanges else { return }
+    
     let level = match.range(at: 1).length
     addAttributes(attributedString, range: match.range(at: 2), level: level)
     let range = NSRange(location: match.range(at: 1).location,

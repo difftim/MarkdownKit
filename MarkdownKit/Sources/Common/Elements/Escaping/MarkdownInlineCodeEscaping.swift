@@ -21,19 +21,16 @@ open class MarkdownInlineCodeEscaping: MarkdownElement {
   }
 
   open func match(_ match: NSTextCheckingResult, attributedString: NSMutableAttributedString) {
+    guard 3 < match.numberOfRanges else { return }
+    
     let range = match.range(at: 3)
     // escaping all characters
     let matchString = attributedString.attributedSubstring(from: range).string
 
     // 仅处理内联无换行符
     guard matchString.contains(where: { $0 == "\n" }) == false else { return }
-
-    let escapedString = [UInt16](matchString.utf16)
-      .map { (value: UInt16) -> String in String(format: "%04x", value) }
-      .reduce("") { (string: String, character: String) -> String in
-        return "\(string)\(character)"
-    }
-    attributedString.replaceCharacters(in: range, with: escapedString)
+    guard let encodString = matchString.encodBase64() else { return }
+    
+    attributedString.replaceCharacters(in: range, with: encodString)
   }
-
 }
