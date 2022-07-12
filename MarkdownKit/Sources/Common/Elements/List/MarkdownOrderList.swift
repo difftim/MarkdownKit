@@ -31,7 +31,7 @@ open class MarkdownOrderList: MarkdownElement, MarkdownStyle {
     let indicator = "\(index). "
     attributedString.replaceCharacters(in: range, with: indicator)
     let updatedRange = NSRange(location: range.location, length: indicator.utf16.count)
-    attributedString.addAttributes([.paragraphStyle : paragraphStyle(indicator.utf16.count)], range: updatedRange)·
+    attributedString.addAttributes([.paragraphStyle : paragraphStyle(indicator.utf16.count)], range: updatedRange)
   }
 
   private func paragraphStyle(_ indent: Int) -> NSMutableParagraphStyle {
