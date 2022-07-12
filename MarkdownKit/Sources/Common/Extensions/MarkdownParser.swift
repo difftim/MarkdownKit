@@ -17,17 +17,19 @@ open class MarkdownParser {
     public static let automaticLink = EnabledElements(rawValue: 1)
     public static let header        = EnabledElements(rawValue: 1 << 1)
     public static let list          = EnabledElements(rawValue: 1 << 2)
-    public static let quote         = EnabledElements(rawValue: 1 << 3)
-    public static let link          = EnabledElements(rawValue: 1 << 4)
-    public static let bold          = EnabledElements(rawValue: 1 << 5)
-    public static let italic        = EnabledElements(rawValue: 1 << 6)
-    public static let code          = EnabledElements(rawValue: 1 << 7)
-    public static let strikethrough = EnabledElements(rawValue: 1 << 8)
-    public static let horizontalLine = EnabledElements(rawValue: 1 << 9)
+    public static let orderList     = EnabledElements(rawValue: 1 << 3)
+    public static let quote         = EnabledElements(rawValue: 1 << 4)
+    public static let link          = EnabledElements(rawValue: 1 << 5)
+    public static let bold          = EnabledElements(rawValue: 1 << 6)
+    public static let italic        = EnabledElements(rawValue: 1 << 7)
+    public static let code          = EnabledElements(rawValue: 1 << 8)
+    public static let strikethrough = EnabledElements(rawValue: 1 << 9)
+    public static let horizontalLine = EnabledElements(rawValue: 1 << 10)
 
     public static let disabledAutomaticLink: EnabledElements = [
       .header,
       .list,
+      .orderList,
       .quote,
       .link,
       .bold,
@@ -53,6 +55,7 @@ open class MarkdownParser {
   // MARK: Basic Elements
   public let header: MarkdownHeader
   public let list: MarkdownList
+  public let orderList: MarkdownOrderList
   public let quote: MarkdownQuote
   public let link: MarkdownLink
   public let automaticLink: MarkdownAutomaticLink
@@ -100,6 +103,7 @@ open class MarkdownParser {
     
     self.header = MarkdownHeader()
     self.list = MarkdownList()
+    self.orderList = MarkdownOrderList()
     self.quote = MarkdownQuote()
     self.link = MarkdownLink()
     self.automaticLink = MarkdownAutomaticLink()
@@ -160,6 +164,7 @@ open class MarkdownParser {
     let pairs: [(EnabledElements, MarkdownElement)] = [
       (.header, header),
       (.list, list),
+      (.orderList, orderList),
       (.quote, quote),
       (.bold, bold),
       (.italic, italic),
