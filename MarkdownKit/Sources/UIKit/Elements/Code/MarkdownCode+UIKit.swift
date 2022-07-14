@@ -10,10 +10,24 @@
 
 import UIKit
 
-public extension MarkdownCode {
-    static let defaultHighlightColor = UIColor(red: 58/255.0, green: 129/255.0, blue: 84/255.0, alpha: 1.0)
-  static let defaultBackgroundColor = UIColor(red: 51/255.0, green: 51/255.0, blue: 51/255.0, alpha: 1.0)
-  static let defaultFont = UIFont(name: "Menlo-Regular", size: 12)
+public extension MarkdownInlineCode {
+  static var defaultHighlightColor: UIColor = {
+    if #available(iOSApplicationExtension 13.0, *) {
+      return UIColor.label
+    } else {
+      return UIColor(red: 58/255.0, green: 129/255.0, blue: 84/255.0, alpha: 1.0)
+    }
+  }()
+    
+  static var defaultBackgroundColor: UIColor = {
+    if #available(iOSApplicationExtension 13.0, *) {
+      return UIColor.systemGray5
+    } else {
+      return UIColor.systemGray
+    }
+  }()
+
+  static let defaultFont = UIFont.preferredFont(forTextStyle: .body)
 }
 
 #endif

@@ -8,6 +8,7 @@
 
 import UIKit
 import MarkdownKit
+import MarkdownView
 
 class ViewController: UIViewController {
   @IBOutlet fileprivate weak var textView: UITextView! {
@@ -22,8 +23,6 @@ class ViewController: UIViewController {
   }()
   
   fileprivate lazy var viewModel: ViewModel = {
-    // Example with custom font
-    // fileprivate let markdownParser = MarkdownParser(font: UIFont(name: "Product Sans", size: UIFont.systemFontSize)!)
     let parser = MarkdownParser()
     parser.addCustomElement(MarkdownSubreddit())
     
@@ -93,9 +92,17 @@ class ViewController: UIViewController {
 extension ViewController: UITextViewDelegate {
   func textView(_ textView: UITextView, shouldInteractWith URL: URL,
                 in characterRange: NSRange) -> Bool {
-    UIApplication.shared.open(URL, options: [:])
+//    UIApplication.shared.open(URL, options: [:])
+    print("keith-s ==> \(URL)")
     //UIApplication.shared.openURL(URL)
-    return true
+    let tuple = MarkdownCodeEscaping.code(url: URL)
+      if let lang = tuple.0, let code = tuple.1 {
+      print(lang)
+      print(code)
+        
+      self.present(CodeViewController(code: code), animated: true)
+    }
+    return false
   }
   
 }

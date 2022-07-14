@@ -17,22 +17,26 @@ open class MarkdownParser {
     public static let automaticLink = EnabledElements(rawValue: 1)
     public static let header        = EnabledElements(rawValue: 1 << 1)
     public static let list          = EnabledElements(rawValue: 1 << 2)
-    public static let quote         = EnabledElements(rawValue: 1 << 3)
-    public static let link          = EnabledElements(rawValue: 1 << 4)
-    public static let bold          = EnabledElements(rawValue: 1 << 5)
-    public static let italic        = EnabledElements(rawValue: 1 << 6)
-    public static let code          = EnabledElements(rawValue: 1 << 7)
-    public static let strikethrough = EnabledElements(rawValue: 1 << 8)
+    public static let orderList     = EnabledElements(rawValue: 1 << 3)
+    public static let quote         = EnabledElements(rawValue: 1 << 4)
+    public static let link          = EnabledElements(rawValue: 1 << 5)
+    public static let bold          = EnabledElements(rawValue: 1 << 6)
+    public static let italic        = EnabledElements(rawValue: 1 << 7)
+    public static let code          = EnabledElements(rawValue: 1 << 8)
+    public static let strikethrough = EnabledElements(rawValue: 1 << 9)
+    public static let horizontalLine = EnabledElements(rawValue: 1 << 10)
 
     public static let disabledAutomaticLink: EnabledElements = [
       .header,
       .list,
+      .orderList,
       .quote,
       .link,
       .bold,
       .italic,
       .code,
       .strikethrough,
+      .horizontalLine,
       ]
 
     public static let all: EnabledElements = [
@@ -51,15 +55,18 @@ open class MarkdownParser {
   // MARK: Basic Elements
   public let header: MarkdownHeader
   public let list: MarkdownList
+  public let orderList: MarkdownOrderList
   public let quote: MarkdownQuote
   public let link: MarkdownLink
   public let automaticLink: MarkdownAutomaticLink
   public let bold: MarkdownBold
   public let italic: MarkdownItalic
-  public let code: MarkdownCode
+  public let inlineCode: MarkdownInlineCode
   public let strikethrough: MarkdownStrikethrough
+  public let horizontalLine: MarkdownHorizontalLine
 
   // MARK: Escaping Elements
+  fileprivate var inlineCodeEscaping = MarkdownInlineCodeEscaping()
   fileprivate var codeEscaping = MarkdownCodeEscaping()
   fileprivate var escaping = MarkdownEscaping()
   fileprivate var unescaping = MarkdownUnescaping()
@@ -96,16 +103,18 @@ open class MarkdownParser {
     
     self.header = MarkdownHeader()
     self.list = MarkdownList()
+    self.orderList = MarkdownOrderList()
     self.quote = MarkdownQuote()
     self.link = MarkdownLink()
     self.automaticLink = MarkdownAutomaticLink()
     self.bold = MarkdownBold()
     self.italic = MarkdownItalic()
-    self.code = MarkdownCode()
+    self.inlineCode = MarkdownInlineCode()
     self.strikethrough = MarkdownStrikethrough()
+    self.horizontalLine = MarkdownHorizontalLine()
 
-    self.escapingElements = [codeEscaping, escaping]
-    self.unescapingElements = [code, unescaping]
+    self.escapingElements = [inlineCodeEscaping, escaping]
+    self.unescapingElements = [inlineCode, unescaping]
     self.customElements = customElements
     self.enabledElements = enabledElements
     updateDefaultElements()
@@ -155,13 +164,15 @@ open class MarkdownParser {
     let pairs: [(EnabledElements, MarkdownElement)] = [
       (.header, header),
       (.list, list),
+      (.orderList, orderList),
       (.quote, quote),
       (.bold, bold),
       (.italic, italic),
       (.strikethrough, strikethrough),
+      (.horizontalLine, horizontalLine),
       (.link, link),
       (.automaticLink, automaticLink),
-      (.code, code),
+      (.code, inlineCode),
     ]
     defaultElements = pairs.compactMap { enabled, element in
         enabledElements.contains(enabled) ? element : nil
@@ -170,7 +181,7 @@ open class MarkdownParser {
 
   fileprivate func updateEscapingElements() {
     if enabledElements.contains(.code) {
-      escapingElements = [codeEscaping, escaping]
+      escapingElements = [codeEscaping, inlineCodeEscaping, escaping]
     } else {
       escapingElements = [escaping]
     }
@@ -178,7 +189,7 @@ open class MarkdownParser {
 
   fileprivate func updateUnescapingElements() {
     if enabledElements.contains(.code) {
-      unescapingElements = [code, unescaping]
+      unescapingElements = [inlineCode, unescaping]
     } else {
       unescapingElements = [unescaping]
     }

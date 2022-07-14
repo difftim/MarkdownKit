@@ -24,6 +24,8 @@ open class MarkdownItalic: MarkdownCommonElement {
   }
     
   public func match(_ match: NSTextCheckingResult, attributedString: NSMutableAttributedString) {
+    guard 4 < match.numberOfRanges else { return }
+    
     attributedString.deleteCharacters(in: match.range(at: 4))
 
     var attributes = self.attributes
@@ -31,7 +33,7 @@ open class MarkdownItalic: MarkdownCommonElement {
     attributedString.enumerateAttribute(.font, in: match.range(at: 3)) { value, range, _ in
       guard let currentFont = value as? MarkdownFont else { return }
       if let customFont = self.font {
-        attributes[.font] = currentFont.isBold() ? customFont.bold().italic() : customFont.italic()
+        attributes[.font] = customFont.italic()
       } else {
         attributedString.addAttribute(
           NSAttributedString.Key.font,
