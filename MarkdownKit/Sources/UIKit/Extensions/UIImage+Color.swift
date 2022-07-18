@@ -9,6 +9,19 @@
 import UIKit
 
 extension UIImage {
+    static func lineAttach(_ font: UIFont = .preferredFont(forTextStyle: .body)) -> NSTextAttachment {
+        let lineHeight = font.lineHeight
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 2000, height: lineHeight))
+        imageView.backgroundColor = .clear
+        imageView.contentMode = .scaleAspectFit
+        let img = UIImage.image(color: .gray, andRect: CGRect(x: 0, y: 0, width: 2000, height: 1))
+        imageView.image = img
+        let newImage = UIImage.image(from: imageView)
+        let textAttachment = NSTextAttachment()
+        textAttachment.image = newImage
+        return textAttachment
+    }
+  
     static func image(color: UIColor, andRect rect: CGRect) -> UIImage {
         UIGraphicsBeginImageContext(rect.size)
         let context = UIGraphicsGetCurrentContext()
