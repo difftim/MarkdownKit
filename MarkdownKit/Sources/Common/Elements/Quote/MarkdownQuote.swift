@@ -7,36 +7,55 @@
 //
 import Foundation
 
-open class MarkdownQuote: MarkdownLevelElement {
+open class MarkdownQuote: MarkdownElement, MarkdownStyle {
 
-  fileprivate static let regex = "^(\\>{1,%@})\\s*(.+)$"
+  fileprivate static let regex = "^(>{1,} {1,})([\\s\\S]+?)(?=(\\n{2})|( {0,}\\d\\.)|( {0,}[\\+-])|(>))"
 
-  open var maxLevel: Int
   open var font: MarkdownFont?
   open var color: MarkdownColor?
-  open var separator: String
-  open var indicator: String
 
   open var regex: String {
-    let level: String = maxLevel > 0 ? "\(maxLevel)" : ""
-    return String(format: MarkdownQuote.regex, level)
+    return MarkdownQuote.regex
   }
-
-  public init(font: MarkdownFont? = nil, maxLevel: Int = 0, indicator: String = ">",
-              separator: String = "  ", color: MarkdownColor? = nil) {
-    self.maxLevel = maxLevel
-    self.indicator = indicator
-    self.separator = separator
+  
+  public init(font: MarkdownFont? = nil,
+              color: MarkdownColor? = nil) {
     self.font = font
     self.color = color
   }
+  
+  open func regularExpression() throws -> NSRegularExpression {
+    return try NSRegularExpression(pattern: regex, options: .anchorsMatchLines)
+  }
 
+  open func formatText(_ attributedString: NSMutableAttributedString, range: NSRange) {
+    attributedString.deleteCharacters(in: range)
+  }
+  
+  private func defaultParagraphStyle() -> NSMutableParagraphStyle {
+    let paragraphStyle = NSMutableParagraphStyle()
+    paragraphStyle.firstLineHeadIndent = 16
+    paragraphStyle.headIndent = 16
+    paragraphStyle.tag = 10
+    return paragraphStyle
+  }
+  
+  private func attributes() -> [NSAttributedString.Key: AnyObject] {
+    var attributes = self.attributes
+    attributes[NSAttributedString.Key.paragraphStyle] = defaultParagraphStyle()
+    return attributes
+  }
+}
 
-  open func formatText(_ attributedString: NSMutableAttributedString, range: NSRange, level: Int) {
-    var string = (0..<level).reduce("") { (string: String, _: Int) -> String in
-      return "\(string)\(separator)"
-    }
-    string = "\(string)\(indicator) "
-    attributedString.replaceCharacters(in: range, with: string)
+extension MarkdownQuote {
+  func addAttributes(_ attributedString: NSMutableAttributedString, range: NSRange) {
+    attributedString.addAttributes(attributes(), range: range)
+  }
+  
+  open func match(_ match: NSTextCheckingResult, attributedString: NSMutableAttributedString) {
+    guard 2 < match.numberOfRanges else { return }
+    
+    addAttributes(attributedString, range: match.range(at: 2))
+    formatText(attributedString, range: match.range(at: 1))
   }
 }

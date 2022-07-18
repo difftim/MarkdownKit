@@ -14,6 +14,8 @@ class ViewModel {
   
   let markdownParser: MarkdownParser
   
+  var attString: NSAttributedString = NSAttributedString()
+  
   fileprivate let testingURL: String
   
   var markdownAttributedStringChanged: ((NSAttributedString?, Error?) -> ())? = nil
@@ -27,7 +29,8 @@ class ViewModel {
 
 extension ViewModel {
   func parseString(markdownString: String) {
-    markdownAttributedStringChanged?(markdownParser.parse(markdownString), nil)
+    attString =  markdownParser.parse(markdownString)
+    markdownAttributedStringChanged?(attString, nil)
   }
   
   func requestTestPage() {

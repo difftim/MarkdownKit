@@ -78,6 +78,8 @@
 		B672002D21EF8A96008649E1 /* MarkdownElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = B672001921EF8A96008649E1 /* MarkdownElement.swift */; };
 		B672002E21EF8A96008649E1 /* MarkdownStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B672001A21EF8A96008649E1 /* MarkdownStyle.swift */; };
 		B695DA0E21F5E60300FC6FCD /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B695DA0D21F5E60300FC6FCD /* ViewModel.swift */; };
+		CE74C761287FAEAA0081A9DF /* NSMutableParagraphStyle+Extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE74C760287FAEAA0081A9DF /* NSMutableParagraphStyle+Extenstion.swift */; };
+		CE74C762287FAEAA0081A9DF /* NSMutableParagraphStyle+Extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE74C760287FAEAA0081A9DF /* NSMutableParagraphStyle+Extenstion.swift */; };
 		CEA53DA12878283500C21D70 /* MarkdownOrderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA53DA02878283500C21D70 /* MarkdownOrderList.swift */; };
 		CEA53DA22878283500C21D70 /* MarkdownOrderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA53DA02878283500C21D70 /* MarkdownOrderList.swift */; };
 		CEA53DA42878792C00C21D70 /* String+Base64.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA53DA32878792C00C21D70 /* String+Base64.swift */; };
@@ -193,6 +195,7 @@
 		B672001921EF8A96008649E1 /* MarkdownElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownElement.swift; sourceTree = "<group>"; };
 		B672001A21EF8A96008649E1 /* MarkdownStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownStyle.swift; sourceTree = "<group>"; };
 		B695DA0D21F5E60300FC6FCD /* ViewModel.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; tabWidth = 2; };
+		CE74C760287FAEAA0081A9DF /* NSMutableParagraphStyle+Extenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableParagraphStyle+Extenstion.swift"; sourceTree = "<group>"; };
 		CEA53DA02878283500C21D70 /* MarkdownOrderList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownOrderList.swift; sourceTree = "<group>"; };
 		CEA53DA32878792C00C21D70 /* String+Base64.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Base64.swift"; sourceTree = "<group>"; };
 		CEABE6E4286AEBA90005434F /* MarkdownInlineCodeEscaping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownInlineCodeEscaping.swift; sourceTree = "<group>"; };
@@ -548,6 +551,7 @@
 				B672000321EF8A96008649E1 /* MarkdownParser.swift */,
 				B672000521EF8A96008649E1 /* String+UTF16.swift */,
 				CEA53DA32878792C00C21D70 /* String+Base64.swift */,
+				CE74C760287FAEAA0081A9DF /* NSMutableParagraphStyle+Extenstion.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -862,6 +866,7 @@
 				CEA53DA12878283500C21D70 /* MarkdownOrderList.swift in Sources */,
 				B672002C21EF8A96008649E1 /* MarkdownLevelElement.swift in Sources */,
 				3D6C279C25E80DD8008ED858 /* Typealias.swift in Sources */,
+				CE74C761287FAEAA0081A9DF /* NSMutableParagraphStyle+Extenstion.swift in Sources */,
 				B64AF60B22031A670048439D /* MarkdownHeader+UIKit.swift in Sources */,
 				B672002A21EF8A96008649E1 /* MarkdownCommonElement.swift in Sources */,
 				B672002E21EF8A96008649E1 /* MarkdownStyle.swift in Sources */,
@@ -899,6 +904,7 @@
 				CEA53DA22878283500C21D70 /* MarkdownOrderList.swift in Sources */,
 				B64AF633220341960048439D /* MarkdownStyle.swift in Sources */,
 				B64AF63B220344220048439D /* MarkdownCode+AppKit.swift in Sources */,
+				CE74C762287FAEAA0081A9DF /* NSMutableParagraphStyle+Extenstion.swift in Sources */,
 				B64AF61C220340360048439D /* MarkdownParser.swift in Sources */,
 				B64AF62C220340BC0048439D /* MarkdownLevelElement.swift in Sources */,
 				B64AF6282203408F0048439D /* MarkdownUnescaping.swift in Sources */,
