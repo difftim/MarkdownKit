@@ -58,4 +58,22 @@ extension MarkdownQuote {
     addAttributes(attributedString, range: match.range(at: 2))
     formatText(attributedString, range: match.range(at: 1))
   }
+  
+  public func parse(_ attributedString: NSMutableAttributedString) {
+    attributedString.append(NSAttributedString(string: "\n\n"))
+    var location = 0
+    do {
+      let regex = try regularExpression()
+      while let regexMatch = regex.firstMatch(in: attributedString.string,
+                                              options: .withoutAnchoringBounds,
+                                              range: NSRange(location: location,
+                                                             length: attributedString.length - location)) {
+        let oldLength = attributedString.length
+        match(regexMatch, attributedString: attributedString)
+        let newLength = attributedString.length
+        location = regexMatch.range.location + regexMatch.range.length + newLength - oldLength
+      }
+    } catch { }
+    attributedString.deleteCharacters(in: NSRange(location: attributedString.length - 2, length: 2))
+  }
 }
