@@ -9,7 +9,7 @@ import Foundation
 
 open class MarkdownQuote: MarkdownElement, MarkdownStyle {
 
-  fileprivate static let regex = "^(>{1,} {1,})([\\s\\S]+?)(?=(\\n{2})|( {0,}\\d\\.)|( {0,}[\\+-])|(>))"
+  fileprivate static let regex = "^(>{1,} {0,})([\\s\\S]+?)(?=(\\n{2})|( {0,}\\d\\.)|( {0,}[#>▶\\+-]))"
 
   open var font: MarkdownFont?
   open var color: MarkdownColor?
@@ -36,6 +36,7 @@ open class MarkdownQuote: MarkdownElement, MarkdownStyle {
     let paragraphStyle = NSMutableParagraphStyle()
     paragraphStyle.firstLineHeadIndent = 16
     paragraphStyle.headIndent = 16
+    paragraphStyle.lineSpacing = 2.0
     paragraphStyle.tag = 10
     return paragraphStyle
   }

@@ -29,7 +29,10 @@ class ViewModel {
 
 extension ViewModel {
   func parseString(markdownString: String) {
-    attString =  markdownParser.parse(markdownString)
+    let regex = try! NSRegularExpression(pattern: "\\n *\\n", options: NSRegularExpression.Options.caseInsensitive)
+    let range = NSMakeRange(0, markdownString.count)
+    let newString = regex.stringByReplacingMatches(in: markdownString, options: [], range: range, withTemplate: "\n")
+    attString =  markdownParser.parse(newString)
     markdownAttributedStringChanged?(attString, nil)
   }
   
