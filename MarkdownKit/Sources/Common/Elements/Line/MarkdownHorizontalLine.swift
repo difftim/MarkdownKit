@@ -9,7 +9,7 @@
 import Foundation
 
 open class MarkdownHorizontalLine: MarkdownElement {
-    fileprivate static let regex = "^([\\t\\r -]*?)(-{3,})([\\t\\r -]*?)$"
+    fileprivate static let regex = "^([\\t\\r -]*?)(-{2,})([\\t\\r -]*?)$"
 
     open var regex: String {
         return MarkdownHorizontalLine.regex

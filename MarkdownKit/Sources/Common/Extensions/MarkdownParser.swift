@@ -168,12 +168,12 @@ open class MarkdownParser {
     let pairs: [(EnabledElements, MarkdownElement)] = [
       (.quote, quote),
       (.header, header),
+      (.horizontalLine, horizontalLine),
       (.list, list),
       (.orderList, orderList),
       (.bold, bold),
       (.italic, italic),
       (.strikethrough, strikethrough),
-      (.horizontalLine, horizontalLine),
       (.link, link),
       (.automaticLink, automaticLink),
       (.code, inlineCode),

@@ -82,14 +82,14 @@ class ViewController: UIViewController {
           let view1 = UIView(frame: CGRect(x: 0, y: linerect.minY, width: 5, height: linerect.height))
 //          print(linerect)
 //          view1.frame = linerect
-          view1.backgroundColor = .red
+//          view1.backgroundColor = .red
           self.textView.addSubview(view1)
         }
         let rect = self.textView.rect(forParagraphRange: range)
         print(rect)
         let view = UIView(frame: CGRect(x: 0, y: rect.minY, width: 5, height: rect.height))
 //        view.frame = rect
-//        view.backgroundColor = .gray
+        view.backgroundColor = .gray
         self.textView.addSubview(view)
       }
     }
@@ -153,7 +153,7 @@ extension UITextView {
   
   func rect(forParagraphRange range: NSRange) -> CGRect {
     let firstLineIndex = layoutManager.glyphIndexForCharacter(at: range.lowerBound)
-    let lastLineIndex = layoutManager.glyphIndexForCharacter(at: range.upperBound)
+    let lastLineIndex = layoutManager.glyphIndexForCharacter(at: range.upperBound - 1)
     let firstRect = layoutManager.lineFragmentRect(forGlyphAt: Int(firstLineIndex), effectiveRange: nil)
     let lastRect = layoutManager.lineFragmentRect(forGlyphAt: Int(lastLineIndex), effectiveRange: nil)
     
