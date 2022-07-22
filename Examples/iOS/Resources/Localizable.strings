@@ -5,28 +5,74 @@
   Created by Ivan Bruel on 19/07/16.
   Copyright © 2016 CocoaPods. All rights reserved.
 */
-"Markdown" = "109.       你好\n3. 北京\n77. 我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人\n 4. 你是男孩\n\n\n33. 他是女孩";
-//"Markdown" = "分割线\n-\n--    \n--    ---\n----\n----- ----\n------------- ----\n------  test-----\n";
-//"Markdown" = "分割线\n-\n--";
+//"Markdown" = "109.       你好\n3. 北京\n77. 我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人\n 4. 你是男孩\n\n\n33. 他是女孩";
+//"Markdown" = "分割线\n-   ---\n-  ---\n--    - - -\n----\n----- ----\n------------- ----\n------  test-----\n";
+"Markdown" = "#实例2
+> 2、sdsfds
+dsfds
+ 
 
-//"Markdown" = "---  --\n --- --\nHorizontal line
-//\\\\\\
-//[Cisco](www.cisco.com)
+
+
+
+
+      
+
+>  markdow引用阿萨德潇洒
+dsadsafsadasdf
+sadsadsa
+---
+大大说
+> sdsfds
+dsf";
+//"Markdown" = "> nihoa\n>nihao";
+
+//"Markdown" = "
+//你好
+//> 这个不能匹配，没有空格alkjsdlj没有空格alkjsdlj没有空格alkjsdlj没有空格alkjsdlj没有空格alkjsdlj没有空格alkjsdlj
+//阿斯利康大家
+//- 这个也是
+//这个还要
 //
-//```swift \n (optional)
-//\\\n
-//CODE BLOCK
+//>kjahs
+//这个不要
+//```swift
+//alsdjjasd
 //```
-//`Unformatted \\\text`
-//  - 湿答答
-//- 啊都是撒的
+//(> [\s\S]*)(?>( ?\n{2}))($)
+//这个不是引用
 //
-//* 湿答答
-//  + 湿答答
+//>>>>>>这个不能匹配，没有空格
+//# nihao
+//---
+//> 这个是引用
+//这个也是
+//这个还要
+//这个不要
+//
+//1. 这个不是引用
+//> ku";
+
+//"Markdown" = "># 湿答答
+//#湿答答
+//##湿答答
+//##湿答答
+//# 阿斯顿就
+//###湿答答
+//## 啊快结束的健康和
+//#湿答答
+//#湿答答
+//#湿答答
+////##湿答答
+//#湿答答
+//#湿答答
+//### 将阿克索德好了
+//asdjkjadjlajsdlj
+//1. 都是
 //+ 湿答答
-//1. 啊都是的
-//5. 阿斯顿是的
-//66. 实打实的
+//+ **啊都是撒的**
+//# 啊都是撒的
+//+ 啊都是撒的
 //";
 
 //"Markdown" = "*aasdda*\n**bdddd**\n___cssss___\n**__ddddd__**\n*****eaeasd*****\n******dddddf******";

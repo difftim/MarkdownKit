@@ -29,15 +29,23 @@ open class MarkdownHeader: MarkdownLevelElement {
     self.color = color
     self.fontIncrease = fontIncrease
   }
-
-  open func formatText(_ attributedString: NSMutableAttributedString, range: NSRange, level: Int) {
-      attributedString.deleteCharacters(in: range)
+  
+  public func addAttributes(_ attributedString: NSMutableAttributedString, range: NSRange, level: Int) {
+    attributedString.addAttributes(attributesForLevel(level - 1), range: range)
+    if level < 3 {
+      attributedString.insert(NSAttributedString(string: "\n---"), at: range.upperBound)
+      attributedString.insert(NSAttributedString(string: "\n"), at: range.lowerBound)
+    }
   }
 
-    open func attributesForLevel(_ level: Int) -> [NSAttributedString.Key: AnyObject] {
+  open func formatText(_ attributedString: NSMutableAttributedString, range: NSRange, level: Int) {
+    attributedString.deleteCharacters(in: range)
+  }
+
+  open func attributesForLevel(_ level: Int) -> [NSAttributedString.Key: AnyObject] {
     var attributes = self.attributes
     if let font = font {
-        let headerFontSize: CGFloat = font.pointSize + 4 + (-1 * CGFloat(level) * CGFloat(fontIncrease))
+      let headerFontSize: CGFloat = font.pointSize + 4 + (-1 * CGFloat(level) * CGFloat(fontIncrease))
       
       attributes[NSAttributedString.Key.font] = font.withSize(headerFontSize).bold()
     }

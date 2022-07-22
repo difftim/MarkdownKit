@@ -30,8 +30,8 @@ open class MarkdownParser {
       .header,
       .list,
       .orderList,
-      .quote,
       .link,
+      .quote,
       .bold,
       .italic,
       .code,
@@ -149,6 +149,10 @@ open class MarkdownParser {
                                   range: NSRange(location: 0, length: attributedString.length))
     attributedString.addAttribute(.foregroundColor, value: color,
                                   range: NSRange(location: 0, length: attributedString.length))
+    let paragraphStyle = NSMutableParagraphStyle()
+    paragraphStyle.lineSpacing = 2.0
+    attributedString.addAttribute(.paragraphStyle, value: paragraphStyle,
+                                  range: NSRange(location: 0, length: attributedString.length))
     var elements: [MarkdownElement] = escapingElements
     elements.append(contentsOf: defaultElements)
     elements.append(contentsOf: customElements)
@@ -162,14 +166,14 @@ open class MarkdownParser {
   fileprivate func updateDefaultElements() {
     // Parsing order matters!
     let pairs: [(EnabledElements, MarkdownElement)] = [
+      (.quote, quote),
       (.header, header),
+      (.horizontalLine, horizontalLine),
       (.list, list),
       (.orderList, orderList),
-      (.quote, quote),
       (.bold, bold),
       (.italic, italic),
       (.strikethrough, strikethrough),
-      (.horizontalLine, horizontalLine),
       (.link, link),
       (.automaticLink, automaticLink),
       (.code, inlineCode),
