@@ -33,7 +33,7 @@ open class MarkdownParser {
       .link,
       .quote,
       .bold,
-//      .italic,
+      .italic,
       .code,
       .strikethrough,
       .horizontalLine,
